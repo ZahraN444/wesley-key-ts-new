@@ -10,10 +10,10 @@ This is a sample API to demonstrate an OpenAPI spec with multiple endpoints and 
 Run the following command from your project directory to install the package from npm:
 
 ```bash
-npm install package-wesley-key-ts-new@3.0.6
+npm install package-wesley-key-ts-new@3.0.7
 ```
 
-For additional package details, see the [Npm page for the package-wesley-key-ts-new@3.0.6 npm](https://www.npmjs.com/package/package-wesley-key-ts-new/v/3.0.6).
+For additional package details, see the [Npm page for the package-wesley-key-ts-new@3.0.7 npm](https://www.npmjs.com/package/package-wesley-key-ts-new/v/3.0.7).
 
 ## Test the SDK
 
@@ -33,16 +33,16 @@ npm run test:coverage
 
 ## Initialize the API Client
 
-**_Note:_** Documentation for the client can be found [here.](https://www.github.com/ZahraN444/wesley-key-ts-new/tree/3.0.6/doc/client.md)
+**_Note:_** Documentation for the client can be found [here.](https://www.github.com/ZahraN444/wesley-key-ts-new/tree/3.0.7/doc/client.md)
 
 The following parameters are configurable for the API Client:
 
 | Parameter | Type | Description |
 |  --- | --- | --- |
 | defaultHost | `string` | *Default*: `'www.example.com'` |
-| environment | [`Environment`](https://www.github.com/ZahraN444/wesley-key-ts-new/tree/3.0.6/README.md#environments) | The API environment. <br> **Default: `Environment.Production`** |
+| environment | [`Environment`](https://www.github.com/ZahraN444/wesley-key-ts-new/tree/3.0.7/README.md#environments) | The API environment. <br> **Default: `Environment.Production`** |
 | timeout | `number` | Timeout for API calls.<br>*Default*: `0` |
-| httpClientOptions | [`Partial<HttpClientOptions>`](https://www.github.com/ZahraN444/wesley-key-ts-new/tree/3.0.6/doc/http-client-options.md) | Stable configurable http client options. |
+| httpClientOptions | [`Partial<HttpClientOptions>`](https://www.github.com/ZahraN444/wesley-key-ts-new/tree/3.0.7/doc/http-client-options.md) | Stable configurable http client options. |
 | unstableHttpClientOptions | `any` | Unstable configurable http client options. |
 
 The API client can be initialized as follows:
@@ -76,7 +76,7 @@ const fileContent = fs.readFileSync(absolutePath, 'utf-8');
 const client = Client.fromJsonConfig(fileContent);
 ```
 
-See the [Configuration-Based Client Initialization](https://www.github.com/ZahraN444/wesley-key-ts-new/tree/3.0.6/doc/configuration-based-client-initialization.md) section for details.
+See the [Configuration-Based Client Initialization](https://www.github.com/ZahraN444/wesley-key-ts-new/tree/3.0.7/doc/configuration-based-client-initialization.md) section for details.
 
 ### Environment-Based Client Initialization
 
@@ -98,7 +98,7 @@ if (fs.existsSync(absolutePath)) {
 const client = Client.fromEnvironment(process.env);
 ```
 
-See the [Environment-Based Client Initialization](https://www.github.com/ZahraN444/wesley-key-ts-new/tree/3.0.6/doc/environment-based-client-initialization.md) section for details.
+See the [Environment-Based Client Initialization](https://www.github.com/ZahraN444/wesley-key-ts-new/tree/3.0.7/doc/environment-based-client-initialization.md) section for details.
 
 ## Environments
 
@@ -112,24 +112,24 @@ The SDK can be configured to use a different environment for making API calls. A
 
 ## List of APIs
 
-* [API](https://www.github.com/ZahraN444/wesley-key-ts-new/tree/3.0.6/doc/controllers/api.md)
+* [API](https://www.github.com/ZahraN444/wesley-key-ts-new/tree/3.0.7/doc/controllers/api.md)
 
 ## SDK Infrastructure
 
 ### Configuration
 
-* [HttpClientOptions](https://www.github.com/ZahraN444/wesley-key-ts-new/tree/3.0.6/doc/http-client-options.md)
-* [RetryConfiguration](https://www.github.com/ZahraN444/wesley-key-ts-new/tree/3.0.6/doc/retry-configuration.md)
-* [ProxySettings](https://www.github.com/ZahraN444/wesley-key-ts-new/tree/3.0.6/doc/proxy-settings.md)
-* [Configuration-Based Client Initialization](https://www.github.com/ZahraN444/wesley-key-ts-new/tree/3.0.6/doc/configuration-based-client-initialization.md)
-* [Environment-Based Client Initialization](https://www.github.com/ZahraN444/wesley-key-ts-new/tree/3.0.6/doc/environment-based-client-initialization.md)
+* [HttpClientOptions](https://www.github.com/ZahraN444/wesley-key-ts-new/tree/3.0.7/doc/http-client-options.md)
+* [RetryConfiguration](https://www.github.com/ZahraN444/wesley-key-ts-new/tree/3.0.7/doc/retry-configuration.md)
+* [ProxySettings](https://www.github.com/ZahraN444/wesley-key-ts-new/tree/3.0.7/doc/proxy-settings.md)
+* [Configuration-Based Client Initialization](https://www.github.com/ZahraN444/wesley-key-ts-new/tree/3.0.7/doc/configuration-based-client-initialization.md)
+* [Environment-Based Client Initialization](https://www.github.com/ZahraN444/wesley-key-ts-new/tree/3.0.7/doc/environment-based-client-initialization.md)
 
 ### HTTP
 
-* [HttpRequest](https://www.github.com/ZahraN444/wesley-key-ts-new/tree/3.0.6/doc/http-request.md)
+* [HttpRequest](https://www.github.com/ZahraN444/wesley-key-ts-new/tree/3.0.7/doc/http-request.md)
 
 ### Utilities
 
-* [ApiResponse](https://www.github.com/ZahraN444/wesley-key-ts-new/tree/3.0.6/doc/api-response.md)
-* [ApiError](https://www.github.com/ZahraN444/wesley-key-ts-new/tree/3.0.6/doc/api-error.md)
+* [ApiResponse](https://www.github.com/ZahraN444/wesley-key-ts-new/tree/3.0.7/doc/api-response.md)
+* [ApiError](https://www.github.com/ZahraN444/wesley-key-ts-new/tree/3.0.7/doc/api-error.md)
 
