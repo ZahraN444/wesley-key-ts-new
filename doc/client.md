@@ -5,23 +5,37 @@ The following parameters are configurable for the API Client:
 
 | Parameter | Type | Description |
 |  --- | --- | --- |
-| defaultHost | `string` | *Default*: `'www.example.com'` |
-| environment | [`Environment`](../README.md#environments) | The API environment. <br> **Default: `Environment.Production`** |
-| timeout | `number` | Timeout for API calls.<br>*Default*: `0` |
+| timeout | `number` | Timeout for API calls.<br>*Default*: `50000` |
 | httpClientOptions | [`Partial<HttpClientOptions>`](../doc/http-client-options.md) | Stable configurable http client options. |
 | unstableHttpClientOptions | `any` | Unstable configurable http client options. |
+| logging | [`PartialLoggingOptions`](../doc/partial-logging-options.md) | Logging Configuration to enable logging |
+| apiKeyCredentials | [`ApiKeyCredentials`](auth/custom-header-signature.md) | The credential object for apiKey |
+| bearerAuthCredentials | [`BearerAuthCredentials`](auth/oauth-2-bearer-token.md) | The credential object for bearerAuth |
 
 The API client can be initialized as follows:
 
 ## Code-Based Client Initialization
 
 ```ts
-import { Client, Environment } from 'package-wesley-key-ts-new';
+import { Client, LogLevel } from 'package-wesley-key-ts-new';
 
 const client = new Client({
-  timeout: 0,
-  environment: Environment.Production,
-  defaultHost: 'www.example.com',
+  apiKeyCredentials: {
+    'X-API-Key': 'X-API-Key'
+  },
+  bearerAuthCredentials: {
+    accessToken: 'AccessToken'
+  },
+  timeout: 50000,
+  logging: {
+    logLevel: LogLevel.Info,
+    logRequest: {
+      logBody: true
+    },
+    logResponse: {
+      logHeaders: true
+    }
+  },
 });
 ```
 

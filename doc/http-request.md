@@ -3,6 +3,12 @@
 
 Represents an HTTP request.
 
+## Converter Methods
+
+| Signature | Description |
+|  --- | --- |
+| `convertExpressRequest(request: ExpressRequestSubset)` | Creates a new HttpRequest instance from Express request. |
+
 ## Properties
 
 | Name | Type | Description |

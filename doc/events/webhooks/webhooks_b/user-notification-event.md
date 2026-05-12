@@ -1,0 +1,74 @@
+
+# User Notification Event
+
+Triggered when user-related notifications occur
+
+## Signature Verification
+
+This event uses the `HMAC Signature Verifier` for request verification. The event includes an `X-Webhook-Signature` header that will be validated using your shared `secret-key` to ensure request authenticity.
+
+## Headers
+
+This event's request contains the following headers.
+
+| Name |
+|  --- |
+| Content-Type |
+
+## Payload Type
+
+This event's request payload is of type [UserNotificationEventBody](../../../../doc/models/containers/user-notification-event-body.md).
+
+## Payload Example
+
+```json
+{
+  "userActionNotificationEventType": "user.action",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
+}
+```
+
+## SDK Usage Example
+
+```ts
+import express, { Request, Response } from 'express';
+import {
+  convertExpressRequest,
+  WebhooksBHandler,
+  WebhooksBParsingResult,
+} from 'package-wesley-key-ts-new';
+
+const app = express();
+app.use(express.json());
+
+const handler = new WebhooksBHandler('hmac-secret-key');
+
+app.post('/webhooks', (req: Request, res: Response) => {
+  // Use the provided handler to verify and parse the incoming event
+  const result = handler.verifyAndParseEvent(convertExpressRequest(req));
+
+  if (WebhooksBParsingResult.isUserNotificationEventEvent(result)) {
+    // Result narrowed down to type UserNotificationEvent
+    res.status(200).send(result);
+  } else if (WebhooksBParsingResult.isEventTypeUnknown(result)) {
+    // Result narrowed down to type UnknownEvent
+    res.status(400).send(result);
+  } else if (WebhooksBParsingResult.isSignatureVerificationFailure(result)) {
+    // Result narrowed down to type SignatureVerificationFailure
+    res.status(400).send(result);
+  }
+});
+```
+
+## Accepted Server Responses
+
+The server should responds with one of the following status codes:
+
+| Status Code | Description |
+|  --- | --- |
+| 200 | Event processed successfully |
+| 422 | Event processing failed |
+

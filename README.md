@@ -1,61 +1,67 @@
 
-# Getting Started with Cypress Test API
+# Getting Started with Webhooks and Callbacks API
 
 ## Introduction
 
-This is a sample API to demonstrate an OpenAPI spec with multiple endpoints and a custom model.
+A comprehensive API demonstrating webhooks and callbacks patterns.
+
+### Webhooks
+
+Webhooks allow your application to receive real-time notifications when certain events occur.
+
+### Callbacks
+
+Callbacks are used for asynchronous operations where the API will call back to your provided URL when the operation completes.
 
 ## Install the Package
 
 Run the following command from your project directory to install the package from npm:
 
 ```bash
-npm install package-wesley-key-ts-new@3.0.7
+npm install package-wesley-key-ts-new@4.1.0
 ```
 
-For additional package details, see the [Npm page for the package-wesley-key-ts-new@3.0.7 npm](https://www.npmjs.com/package/package-wesley-key-ts-new/v/3.0.7).
-
-## Test the SDK
-
-To validate the functionality of this SDK, you can execute all tests located in the `test` directory. This SDK utilizes `Jest` as both the testing framework and test runner.
-
-To run the tests, navigate to the root directory of the SDK and execute the following command:
-
-```bash
-npm run test
-```
-
-Or you can also run tests with coverage report:
-
-```bash
-npm run test:coverage
-```
+For additional package details, see the [Npm page for the package-wesley-key-ts-new@4.1.0 npm](https://www.npmjs.com/package/package-wesley-key-ts-new/v/4.1.0).
 
 ## Initialize the API Client
 
-**_Note:_** Documentation for the client can be found [here.](https://www.github.com/ZahraN444/wesley-key-ts-new/tree/3.0.7/doc/client.md)
+**_Note:_** Documentation for the client can be found [here.](doc/client.md)
 
 The following parameters are configurable for the API Client:
 
 | Parameter | Type | Description |
 |  --- | --- | --- |
-| defaultHost | `string` | *Default*: `'www.example.com'` |
-| environment | [`Environment`](https://www.github.com/ZahraN444/wesley-key-ts-new/tree/3.0.7/README.md#environments) | The API environment. <br> **Default: `Environment.Production`** |
-| timeout | `number` | Timeout for API calls.<br>*Default*: `0` |
-| httpClientOptions | [`Partial<HttpClientOptions>`](https://www.github.com/ZahraN444/wesley-key-ts-new/tree/3.0.7/doc/http-client-options.md) | Stable configurable http client options. |
+| timeout | `number` | Timeout for API calls.<br>*Default*: `50000` |
+| httpClientOptions | [`Partial<HttpClientOptions>`](doc/http-client-options.md) | Stable configurable http client options. |
 | unstableHttpClientOptions | `any` | Unstable configurable http client options. |
+| logging | [`PartialLoggingOptions`](doc/partial-logging-options.md) | Logging Configuration to enable logging |
+| apiKeyCredentials | [`ApiKeyCredentials`](doc/auth/custom-header-signature.md) | The credential object for apiKey |
+| bearerAuthCredentials | [`BearerAuthCredentials`](doc/auth/oauth-2-bearer-token.md) | The credential object for bearerAuth |
 
 The API client can be initialized as follows:
 
 ### Code-Based Client Initialization
 
 ```ts
-import { Client, Environment } from 'package-wesley-key-ts-new';
+import { Client, LogLevel } from 'package-wesley-key-ts-new';
 
 const client = new Client({
-  timeout: 0,
-  environment: Environment.Production,
-  defaultHost: 'www.example.com',
+  apiKeyCredentials: {
+    'X-API-Key': 'X-API-Key'
+  },
+  bearerAuthCredentials: {
+    accessToken: 'AccessToken'
+  },
+  timeout: 50000,
+  logging: {
+    logLevel: LogLevel.Info,
+    logRequest: {
+      logBody: true
+    },
+    logResponse: {
+      logHeaders: true
+    }
+  },
 });
 ```
 
@@ -76,7 +82,7 @@ const fileContent = fs.readFileSync(absolutePath, 'utf-8');
 const client = Client.fromJsonConfig(fileContent);
 ```
 
-See the [Configuration-Based Client Initialization](https://www.github.com/ZahraN444/wesley-key-ts-new/tree/3.0.7/doc/configuration-based-client-initialization.md) section for details.
+See the [Configuration-Based Client Initialization](doc/configuration-based-client-initialization.md) section for details.
 
 ### Environment-Based Client Initialization
 
@@ -98,38 +104,47 @@ if (fs.existsSync(absolutePath)) {
 const client = Client.fromEnvironment(process.env);
 ```
 
-See the [Environment-Based Client Initialization](https://www.github.com/ZahraN444/wesley-key-ts-new/tree/3.0.7/doc/environment-based-client-initialization.md) section for details.
+See the [Environment-Based Client Initialization](doc/environment-based-client-initialization.md) section for details.
 
-## Environments
+## Authorization
 
-The SDK can be configured to use a different environment for making API calls. Available environments are:
+This API uses the following authentication schemes.
 
-### Fields
-
-| Name | Description |
-|  --- | --- |
-| Production | **Default** |
+* [`ApiKey (Custom Header Signature)`](doc/auth/custom-header-signature.md)
+* [`BearerAuth (OAuth 2 Bearer token)`](doc/auth/oauth-2-bearer-token.md)
 
 ## List of APIs
 
-* [API](https://www.github.com/ZahraN444/wesley-key-ts-new/tree/3.0.7/doc/controllers/api.md)
+* [Orders](doc/controllers/orders.md)
+
+## Webhooks
+
+* [Webhooks](doc/events/webhooks/webhooks-handler.md)
+* [Webhooks A](doc/events/webhooks/webhooks-a-handler.md)
+* [Webhooks B](doc/events/webhooks/webhooks-b-handler.md)
+* [Webhooks C](doc/events/webhooks/webhooks-c-handler.md)
+* [Webhooks No Verification](doc/events/webhooks/webhooks-no-verification-handler.md)
 
 ## SDK Infrastructure
 
 ### Configuration
 
-* [HttpClientOptions](https://www.github.com/ZahraN444/wesley-key-ts-new/tree/3.0.7/doc/http-client-options.md)
-* [RetryConfiguration](https://www.github.com/ZahraN444/wesley-key-ts-new/tree/3.0.7/doc/retry-configuration.md)
-* [ProxySettings](https://www.github.com/ZahraN444/wesley-key-ts-new/tree/3.0.7/doc/proxy-settings.md)
-* [Configuration-Based Client Initialization](https://www.github.com/ZahraN444/wesley-key-ts-new/tree/3.0.7/doc/configuration-based-client-initialization.md)
-* [Environment-Based Client Initialization](https://www.github.com/ZahraN444/wesley-key-ts-new/tree/3.0.7/doc/environment-based-client-initialization.md)
+* [HttpClientOptions](doc/http-client-options.md)
+* [RetryConfiguration](doc/retry-configuration.md)
+* [ProxySettings](doc/proxy-settings.md)
+* [Configuration-Based Client Initialization](doc/configuration-based-client-initialization.md)
+* [Environment-Based Client Initialization](doc/environment-based-client-initialization.md)
+* [PartialLoggingOptions](doc/partial-logging-options.md)
+* [PartialRequestLoggingOptions](doc/partial-request-logging-options.md)
+* [PartialResponseLoggingOptions](doc/partial-response-logging-options.md)
+* [LoggerInterface](doc/logger-interface.md)
 
 ### HTTP
 
-* [HttpRequest](https://www.github.com/ZahraN444/wesley-key-ts-new/tree/3.0.7/doc/http-request.md)
+* [HttpRequest](doc/http-request.md)
 
 ### Utilities
 
-* [ApiResponse](https://www.github.com/ZahraN444/wesley-key-ts-new/tree/3.0.7/doc/api-response.md)
-* [ApiError](https://www.github.com/ZahraN444/wesley-key-ts-new/tree/3.0.7/doc/api-error.md)
+* [ApiResponse](doc/api-response.md)
+* [ApiError](doc/api-error.md)
 

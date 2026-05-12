@@ -1,5 +1,5 @@
 {
-  "version": "3.0.7",
+  "version": "4.1.0",
   "license": "MIT",
   "sideEffects": false,
   "main": "dist/cjs/index.js",
@@ -7,8 +7,7 @@
   "module": "dist/esm/index.js",
   "files": [
     "dist",
-    "src",
-    "test"
+    "src"
   ],
   "engines": {
     "node": ">=14.17.0"
@@ -16,8 +15,6 @@
   "scripts": {
     "build": "rimraf dist && tsc -p tsconfig.esm.json & tsc -p tsconfig.cjs.json && node ./scripts/split-package-json.mjs",
     "prepare": "rimraf dist && tsc -p tsconfig.esm.json & tsc -p tsconfig.cjs.json && node ./scripts/split-package-json.mjs",
-    "test": "jest --passWithNoTests",
-    "test:coverage": "jest --coverage --passWithNoTests",
     "lint": "eslint **/*.ts --ignore-path .eslintignore",
     "lint:fix": "eslint **/*.ts --ignore-path .eslintignore --fix"
   },
@@ -32,10 +29,10 @@
   "name": "package-wesley-key-ts-new",
   "description": "test",
   "author": {
-    "name": "zahra naseem"
+    "name": "zahra naseem",
+    "email": "support@example.com"
   },
   "devDependencies": {
-    "@apimatic/test-utilities": "^0.1.2",
     "@types/jest": "^29.4.0",
     "@typescript-eslint/eslint-plugin": "^5.52.0",
     "@typescript-eslint/parser": "^5.52.0",
@@ -50,6 +47,8 @@
     "@apimatic/authentication-adapters": "^0.5.14",
     "@apimatic/axios-client-adapter": "^0.3.20",
     "@apimatic/core": "^0.10.28",
+    "@apimatic/hmac-signature-verifier": "^0.1.2",
+    "@apimatic/json-bigint": "^1.2.0",
     "@apimatic/schema": "^0.7.21"
   },
   "repository": {
@@ -57,7 +56,7 @@
     "url": "https://github.com/ZahraN444/wesley-key-ts-new.git"
   },
   "bugs": {
-    "email": "support@apimatic.io"
+    "email": "support@example.com"
   },
   "keywords": [],
   "contributors": [],
